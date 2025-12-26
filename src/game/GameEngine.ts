@@ -232,8 +232,13 @@ export class GameEngine {
       return;
     }
 
-    // 점수 증가 (생존 시간)
-    this.gameState.score += Math.floor(deltaTime / 100);
+    // 점수 증가 (생존 시간 - 오래 버틸수록 높은 점수)
+    // 기본 점수 + (진행률에 따른 보너스)
+    // 0%: x1배, 50%: x2배, 100%: x3배
+    const scoreMultiplier = 1 + progress * 2;
+    const stageBonus = 1 + this.gameState.currentStage * 0.3; // 스테이지별 추가 보너스
+    const baseScore = Math.floor(deltaTime / 100);
+    this.gameState.score += Math.floor(baseScore * scoreMultiplier * stageBonus);
   }
 
   private checkCollisions(): void {
