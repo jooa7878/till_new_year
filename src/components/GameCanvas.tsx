@@ -111,9 +111,16 @@ export function GameCanvas() {
                 </div>
               ))}
             </div>
-            <button className="start-button" onClick={handleStart}>
-              시작하기
-            </button>
+            <div className="version-buttons">
+              <button className="start-button version-btn" onClick={handleStart}>
+                <span className="version-label">VERSION 1</span>
+                <span className="version-desc">클래식 모드</span>
+              </button>
+              <button className="start-button version-btn version-btn-disabled" disabled>
+                <span className="version-label">VERSION 2</span>
+                <span className="version-desc">vs 몬스터 (Coming Soon)</span>
+              </button>
+            </div>
             <p className="controls-hint">← → 또는 A D 키로 이동</p>
           </div>
         )}

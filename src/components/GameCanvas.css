@@ -208,6 +208,46 @@
   box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
 }
 
+/* 버전 선택 버튼 */
+.version-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  margin-top: 10px;
+}
+
+.version-btn {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 15px 30px;
+  min-width: 200px;
+}
+
+.version-label {
+  font-size: 16px;
+  font-weight: bold;
+  letter-spacing: 2px;
+}
+
+.version-desc {
+  font-size: 11px;
+  margin-top: 4px;
+  letter-spacing: 1px;
+  opacity: 0.8;
+}
+
+.version-btn-disabled {
+  background: linear-gradient(135deg, #444 0%, #666 100%);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.version-btn-disabled:hover {
+  transform: none;
+  box-shadow: none;
+}
+
 .controls-hint {
   margin-top: 20px;
   font-size: 12px;
