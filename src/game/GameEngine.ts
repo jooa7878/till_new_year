@@ -13,6 +13,7 @@ export class GameEngine {
   private stageStartTime: number = 0;
   private stageElapsedTime: number = 0;
   private isRunning: boolean = false;
+  private scoreAccumulator: number = 0;
 
   // 콜백
   private onStateChange?: (state: GameState) => void;
@@ -119,6 +120,7 @@ export class GameEngine {
     this.gameState.status = "playing";
     this.gameState.currentStage = 0;
     this.gameState.score = 0;
+    this.scoreAccumulator = 0;
 
     const now = performance.now();
     this.lastTime = now;
@@ -237,10 +239,14 @@ export class GameEngine {
     // 0%: x1배, 50%: x2배, 100%: x3배
     const scoreMultiplier = 1 + progress * 2;
     const stageBonus = 1 + this.gameState.currentStage * 0.3; // 스테이지별 추가 보너스
-    const baseScore = Math.floor(deltaTime / 100);
-    this.gameState.score += Math.floor(
-      baseScore * scoreMultiplier * stageBonus
-    );
+    
+    // deltaTime을 누적해서 점수 계산 (초당 약 100점 기준)
+    this.scoreAccumulator = (this.scoreAccumulator || 0) + deltaTime;
+    if (this.scoreAccumulator >= 100) {
+      const points = Math.floor(this.scoreAccumulator / 100);
+      this.gameState.score += Math.floor(points * scoreMultiplier * stageBonus);
+      this.scoreAccumulator = this.scoreAccumulator % 100;
+    }
 
     // 점수를 UI에 실시간 반영
     this.notifyStateChange();
