@@ -87,37 +87,37 @@ export const STAGES: StageConfig[] = [
   {
     day: 28,
     name: "STAGE 3",
-    bulletSpeed: 4,
-    bulletFrequency: 500, // 500ms마다 3발 = 초당 6발
-    bulletPatterns: ["random", "aimed", "wave"],
-    duration: 38000, // 38초
+    bulletSpeed: 3.3,
+    bulletFrequency: 650, // 650ms마다 2발 = 초당 ~3발
+    bulletPatterns: ["random", "aimed"],
+    duration: 35000, // 35초
     hasBoss: false,
   },
   {
     day: 29,
     name: "STAGE 4",
-    bulletSpeed: 4.5,
-    bulletFrequency: 450, // 450ms마다 3발 = 초당 ~6.7발
-    bulletPatterns: ["random", "aimed", "wave", "burst"],
-    duration: 42000, // 42초
+    bulletSpeed: 3.6,
+    bulletFrequency: 600, // 600ms마다 2발 = 초당 ~3.3발
+    bulletPatterns: ["random", "aimed", "wave"],
+    duration: 38000, // 38초
     hasBoss: false,
   },
   {
     day: 30,
     name: "STAGE 5",
-    bulletSpeed: 5,
-    bulletFrequency: 400, // 400ms마다 3발 = 초당 7.5발
-    bulletPatterns: ["random", "aimed", "wave", "burst", "spiral"],
-    duration: 45000, // 45초
+    bulletSpeed: 4,
+    bulletFrequency: 550, // 550ms마다 2발 = 초당 ~3.6발
+    bulletPatterns: ["random", "aimed", "wave", "burst"],
+    duration: 42000, // 42초
     hasBoss: false,
   },
   {
     day: 31,
     name: "FINAL STAGE",
-    bulletSpeed: 5.5,
-    bulletFrequency: 350, // 350ms마다 3발 = 초당 ~8.6발
+    bulletSpeed: 4.5,
+    bulletFrequency: 500, // 500ms마다 2발 = 초당 4발
     bulletPatterns: ["random", "aimed", "wave", "burst", "spiral"],
-    duration: 50000, // 50초
+    duration: 45000, // 45초
     hasBoss: true,
   },
 ];
