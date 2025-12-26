@@ -238,7 +238,12 @@ export class GameEngine {
     const scoreMultiplier = 1 + progress * 2;
     const stageBonus = 1 + this.gameState.currentStage * 0.3; // 스테이지별 추가 보너스
     const baseScore = Math.floor(deltaTime / 100);
-    this.gameState.score += Math.floor(baseScore * scoreMultiplier * stageBonus);
+    this.gameState.score += Math.floor(
+      baseScore * scoreMultiplier * stageBonus
+    );
+
+    // 점수를 UI에 실시간 반영
+    this.onStateChange?.(this.gameState);
   }
 
   private checkCollisions(): void {
