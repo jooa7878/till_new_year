@@ -64,60 +64,60 @@ export const GAME_CONFIG = {
   INVINCIBLE_DURATION: 2000, // 2초 무적
 } as const;
 
-// 스테이지 설정 (한 번에 3발씩 스폰)
+// 스테이지 설정 (한 번에 2발씩 스폰)
 export const STAGES: StageConfig[] = [
   {
     day: 26,
-    name: "STAGE 1",
+    name: "12월 26일이 지나고 있습니다",
     bulletSpeed: 3,
-    bulletFrequency: 700, // 700ms마다 3발 = 초당 ~4.3발
+    bulletFrequency: 700,
     bulletPatterns: ["random"],
-    duration: 30000, // 30초
+    duration: 30000,
     hasBoss: false,
   },
   {
     day: 27,
-    name: "STAGE 2",
+    name: "12월 27일이 지나고 있습니다",
     bulletSpeed: 3.5,
-    bulletFrequency: 600, // 600ms마다 3발 = 초당 5발
+    bulletFrequency: 600,
     bulletPatterns: ["random", "aimed"],
-    duration: 33000, // 33초
+    duration: 33000,
     hasBoss: false,
   },
   {
     day: 28,
-    name: "STAGE 3",
+    name: "12월 28일이 지나고 있습니다",
     bulletSpeed: 3.3,
-    bulletFrequency: 650, // 650ms마다 2발 = 초당 ~3발
+    bulletFrequency: 650,
     bulletPatterns: ["random", "aimed"],
-    duration: 35000, // 35초
+    duration: 35000,
     hasBoss: false,
   },
   {
     day: 29,
-    name: "STAGE 4",
+    name: "12월 29일이 지나고 있습니다",
     bulletSpeed: 3.6,
-    bulletFrequency: 600, // 600ms마다 2발 = 초당 ~3.3발
+    bulletFrequency: 600,
     bulletPatterns: ["random", "aimed", "wave"],
-    duration: 38000, // 38초
+    duration: 38000,
     hasBoss: false,
   },
   {
     day: 30,
-    name: "STAGE 5",
+    name: "12월 30일이 지나고 있습니다",
     bulletSpeed: 4,
-    bulletFrequency: 550, // 550ms마다 2발 = 초당 ~3.6발
+    bulletFrequency: 550,
     bulletPatterns: ["random", "aimed", "wave", "burst"],
-    duration: 42000, // 42초
+    duration: 42000,
     hasBoss: false,
   },
   {
     day: 31,
-    name: "FINAL STAGE",
+    name: "12월 31일... 새해가 다가옵니다!",
     bulletSpeed: 4.5,
-    bulletFrequency: 500, // 500ms마다 2발 = 초당 4발
+    bulletFrequency: 500,
     bulletPatterns: ["random", "aimed", "wave", "burst", "spiral"],
-    duration: 45000, // 45초
+    duration: 45000,
     hasBoss: true,
   },
 ];
