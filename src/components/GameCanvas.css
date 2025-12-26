@@ -1,0 +1,406 @@
+.game-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f0f23 100%);
+  padding: 20px;
+  gap: 0;
+}
+
+.game-wrapper {
+  position: relative;
+  border: 3px solid #00d4ff;
+  border-radius: 12px 12px 0 0;
+  box-shadow: 
+    0 0 20px rgba(0, 212, 255, 0.3),
+    0 0 60px rgba(0, 212, 255, 0.1),
+    inset 0 0 60px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.game-canvas {
+  display: block;
+  background: #0a0a1a;
+}
+
+.game-hud {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 10px 15px;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.hud-left, .hud-right {
+  min-width: 100px;
+}
+
+.hud-center {
+  flex: 1;
+  text-align: center;
+}
+
+.score, .high-score {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  color: #00d4ff;
+  text-shadow: 0 0 10px rgba(0, 212, 255, 0.5);
+}
+
+.high-score {
+  font-size: 11px;
+  color: #888;
+}
+
+.lives {
+  font-size: 18px;
+  text-align: right;
+}
+
+.stage-name {
+  font-size: 14px;
+  color: #ffd700;
+  font-weight: bold;
+  text-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+  margin-bottom: 5px;
+}
+
+.progress-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.progress-bar {
+  position: relative;
+  width: 140px;
+  height: 14px;
+  background: rgba(0, 0, 0, 0.6);
+  border-radius: 7px;
+  overflow: hidden;
+  border: 2px solid rgba(0, 212, 255, 0.5);
+  box-shadow: 0 0 10px rgba(0, 212, 255, 0.3);
+}
+
+.progress-fill {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  min-width: 2px;
+  background: linear-gradient(90deg, #00d4ff 0%, #00ff88 100%);
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 255, 136, 0.5);
+}
+
+.progress-text {
+  font-family: 'Courier New', monospace;
+  font-size: 14px;
+  font-weight: bold;
+  color: #00ff88;
+  min-width: 42px;
+  text-shadow: 0 0 8px rgba(0, 255, 136, 0.7);
+}
+
+/* 오버레이 공통 스타일 */
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.85);
+  z-index: 20;
+  animation: fadeIn 0.3s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+/* 메뉴 화면 */
+.menu-overlay {
+  text-align: center;
+}
+
+.game-title {
+  font-size: 42px;
+  font-weight: bold;
+  color: #fff;
+  text-shadow: 
+    0 0 10px #00d4ff,
+    0 0 20px #00d4ff,
+    0 0 40px #00d4ff;
+  margin-bottom: 10px;
+  letter-spacing: 3px;
+}
+
+.game-subtitle {
+  font-size: 16px;
+  color: #ffd700;
+  margin-bottom: 30px;
+}
+
+.stage-preview {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+
+.stage-day {
+  width: 45px;
+  height: 45px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 212, 255, 0.1);
+  border: 2px solid #00d4ff;
+  border-radius: 8px;
+  color: #00d4ff;
+  font-size: 12px;
+  font-weight: bold;
+}
+
+.stage-day:last-child {
+  border-color: #ff4444;
+  color: #ff4444;
+  background: rgba(255, 68, 68, 0.1);
+}
+
+.start-button {
+  padding: 15px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  color: #0a0a1a;
+  background: linear-gradient(135deg, #00d4ff 0%, #00ff88 100%);
+  border: none;
+  border-radius: 30px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.start-button:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 30px rgba(0, 212, 255, 0.5);
+}
+
+.controls-hint {
+  margin-top: 20px;
+  font-size: 12px;
+  color: #666;
+}
+
+/* 일시정지 */
+.pause-overlay h2 {
+  font-size: 36px;
+  color: #ffd700;
+  margin-bottom: 20px;
+}
+
+.pause-overlay p {
+  color: #888;
+}
+
+/* 게임 오버 */
+.gameover-overlay h2 {
+  font-size: 48px;
+  color: #ff4444;
+  text-shadow: 0 0 20px rgba(255, 68, 68, 0.5);
+  margin-bottom: 20px;
+}
+
+.final-score {
+  font-size: 20px;
+  color: #00d4ff;
+  margin-bottom: 10px;
+}
+
+.reached-stage {
+  font-size: 14px;
+  color: #888;
+  margin-bottom: 30px;
+}
+
+/* 스테이지 클리어 */
+.stage-complete-overlay h2 {
+  font-size: 32px;
+  color: #00ff88;
+  margin-bottom: 20px;
+}
+
+.cleared-stage {
+  font-size: 18px;
+  color: #ffd700;
+  margin-bottom: 10px;
+}
+
+.bonus-score {
+  font-size: 16px;
+  color: #00d4ff;
+  margin-bottom: 30px;
+}
+
+/* 승리 화면 */
+.victory-overlay {
+  background: radial-gradient(ellipse at center, rgba(255, 215, 0, 0.2) 0%, rgba(0, 0, 0, 0.9) 100%);
+}
+
+.fireworks {
+  font-size: 48px;
+  animation: bounce 1s infinite;
+  margin-bottom: 20px;
+}
+
+@keyframes bounce {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-20px); }
+}
+
+.victory-title {
+  font-size: 36px;
+  color: #ffd700;
+  text-shadow: 
+    0 0 10px #ffd700,
+    0 0 20px #ffd700,
+    0 0 40px #ff8800;
+  margin-bottom: 10px;
+  animation: glow 1.5s ease-in-out infinite alternate;
+}
+
+@keyframes glow {
+  from { text-shadow: 0 0 10px #ffd700, 0 0 20px #ffd700; }
+  to { text-shadow: 0 0 20px #ffd700, 0 0 40px #ffd700, 0 0 60px #ff8800; }
+}
+
+.victory-subtitle {
+  font-size: 24px;
+  color: #fff;
+  margin-bottom: 20px;
+}
+
+/* 모바일 컨트롤 */
+.mobile-controls {
+  width: 800px;
+  max-width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 40px;
+  padding: 20px 30px;
+  background: linear-gradient(180deg, rgba(10, 10, 26, 0.95), rgba(20, 20, 40, 0.98));
+  border: 3px solid #00d4ff;
+  border-top: 1px solid rgba(0, 212, 255, 0.3);
+  border-radius: 0 0 12px 12px;
+  box-shadow: 
+    0 5px 20px rgba(0, 212, 255, 0.2),
+    inset 0 0 30px rgba(0, 0, 0, 0.5);
+}
+
+.mobile-btn {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 3px solid rgba(255, 255, 255, 0.4);
+  background: rgba(30, 30, 60, 0.7);
+  color: #fff;
+  font-size: 28px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  user-select: none;
+  -webkit-user-select: none;
+  touch-action: manipulation;
+  transition: all 0.1s ease;
+  backdrop-filter: blur(4px);
+  box-shadow: 
+    0 4px 15px rgba(0, 0, 0, 0.4),
+    inset 0 1px 1px rgba(255, 255, 255, 0.1);
+}
+
+.mobile-btn:active {
+  transform: scale(0.92);
+  background: rgba(60, 60, 120, 0.8);
+  border-color: rgba(255, 255, 255, 0.7);
+}
+
+.mobile-btn-move {
+  background: linear-gradient(135deg, rgba(30, 144, 255, 0.5), rgba(30, 30, 60, 0.7));
+}
+
+.mobile-btn-attack {
+  width: 80px;
+  height: 80px;
+  font-size: 32px;
+  background: linear-gradient(135deg, rgba(255, 69, 0, 0.6), rgba(255, 140, 0, 0.4));
+  border-color: rgba(255, 165, 0, 0.6);
+  animation: pulse-attack 1.5s ease-in-out infinite;
+}
+
+.mobile-btn-attack:active {
+  background: linear-gradient(135deg, rgba(255, 100, 50, 0.8), rgba(255, 180, 50, 0.6));
+  transform: scale(0.92);
+}
+
+@keyframes pulse-attack {
+  0%, 100% {
+    box-shadow: 
+      0 4px 15px rgba(0, 0, 0, 0.4),
+      0 0 10px rgba(255, 140, 0, 0.3);
+  }
+  50% {
+    box-shadow: 
+      0 4px 15px rgba(0, 0, 0, 0.4),
+      0 0 20px rgba(255, 140, 0, 0.5);
+  }
+}
+
+/* 데스크톱에서는 투명도 조절 */
+@media (min-width: 769px) and (hover: hover) {
+  .mobile-controls {
+    opacity: 0.7;
+    transition: opacity 0.3s ease;
+  }
+  
+  .mobile-controls:hover {
+    opacity: 1;
+  }
+}
+
+/* 모바일에서 더 크게 */
+@media (max-width: 480px) {
+  .mobile-btn {
+    width: 60px;
+    height: 60px;
+    font-size: 24px;
+  }
+  
+  .mobile-btn-attack {
+    width: 70px;
+    height: 70px;
+    font-size: 28px;
+  }
+  
+  .mobile-controls {
+    bottom: 15px;
+    padding: 0 15px;
+  }
+}
+
