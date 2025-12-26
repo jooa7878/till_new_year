@@ -243,7 +243,7 @@ export class GameEngine {
     );
 
     // 점수를 UI에 실시간 반영
-    this.onStateChange?.(this.gameState);
+    this.notifyStateChange();
   }
 
   private checkCollisions(): void {
